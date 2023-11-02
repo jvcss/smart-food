@@ -35,7 +35,8 @@ class BasicBlocObserver extends BlocObserver {
 
   @override
   void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    print('onError -- bloc: ${bloc.runtimeType}, error: $error');
+    print(
+        'onError -- bloc: ${bloc.runtimeType}, error: $error, st:\n$stackTrace');
     super.onError(bloc, error, stackTrace);
   }
 
