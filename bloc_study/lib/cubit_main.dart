@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 int cubitMain() {
   print('---------CUBIT-----------');
 
-  final cubit = CounterCubit();
+  final cubit = CounterCubit(1);
 
   print(cubit.state);
 
@@ -16,7 +16,7 @@ int cubitMain() {
 }
 
 class CounterCubit extends Cubit<int> {
-  CounterCubit() : super(0);
+  CounterCubit(int initialState) : super(initialState);
 
   void increment() => emit(state + 1);
 }
