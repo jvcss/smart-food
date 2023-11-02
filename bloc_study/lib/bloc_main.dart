@@ -12,7 +12,7 @@ class CounterBloc extends Bloc<CounterEvent, int> {
     // When a CounterIncrementPressd event is added, the current ´state´ of the
     // bloc is accessed via the `state` property
     on<CounterIncrementPressed>((event, emit) {
-      addError(Exception('increment error!'), StackTrace.current);
+      //addError(Exception('increment error!'), StackTrace.current);
       emit(state + 1);
     });
   }
