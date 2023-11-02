@@ -21,6 +21,7 @@ class BasicBlocObserver extends BlocObserver {
   @override
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
     super.onChange(bloc, change);
+    print('onChange -- bloc ${bloc.runtimeType}, change: $change');
   }
 
   @override
