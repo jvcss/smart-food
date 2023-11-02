@@ -42,3 +42,14 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# hide keys
+**/android/app/google-services.json
+
+**/ios/firebase_app_id_file.json
+
+**/ios/Runner/GoogleService-Info.plist
+
+**/macos/firebase_app_id_file.json
+
+**/macos/Runner/GoogleService-Info.plist
