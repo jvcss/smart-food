@@ -2,7 +2,7 @@
 // evento o qual o bloc Contador vai reagir
 import 'package:bloc/bloc.dart';
 
-abstract class CounterEvent {}
+sealed class CounterEvent {}
 
 class CounterIncrementPressed extends CounterEvent {}
 
@@ -11,7 +11,10 @@ class CounterBloc extends Bloc<CounterEvent, int> {
   CounterBloc() : super(0) {
     // When a CounterIncrementPressd event is added, the current ´state´ of the
     // bloc is accessed via the `state` property
-    on<CounterIncrementPressed>((event, emit) => emit(state + 1));
+    on<CounterIncrementPressed>((event, emit) {
+      addError(Exception('increment error!'), StackTrace.current);
+      emit(state + 1);
+    });
   }
 }
 
@@ -20,14 +23,15 @@ Future<int> blocMain() async {
 
   final bloc = CounterBloc();
 
-  print(bloc.state);
+  final subscription = bloc.stream.listen(print);
 
   bloc.add(CounterIncrementPressed());
 
   await Future<void>.delayed(Duration.zero);
 
-  print(bloc.state);
+  await subscription.cancel();
 
   await bloc.close();
+
   return bloc.state;
 }
