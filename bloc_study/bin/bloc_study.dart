@@ -6,8 +6,8 @@ import 'package:bloc_study/bloc_observer.dart' as bloc_observer;
 import 'package:bloc_study/cubit_main.dart' as cubit_main;
 import 'package:bloc_study/bloc_main.dart' as bloc_main;
 
-void main(List<String> arguments) {
+void main(List<String> arguments) async {
   Bloc.observer = bloc_observer.BasicBlocObserver();
-  cubit_main.cubitMain();
+  await cubit_main.cubitMain();
   bloc_main.blocMain();
 }

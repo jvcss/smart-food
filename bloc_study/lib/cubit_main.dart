@@ -1,15 +1,17 @@
 import 'package:bloc/bloc.dart';
 
-int cubitMain() {
+Future<int> cubitMain() async {
   print('---------CUBIT-----------');
 
   final cubit = CounterCubit(1);
 
-  print(cubit.state);
+  final subscription = cubit.stream.listen(print);
 
   cubit.increment();
 
-  print(cubit.state);
+  await Future.delayed(Duration.zero);
+
+  await subscription.cancel();
 
   cubit.close();
   return cubit.state;

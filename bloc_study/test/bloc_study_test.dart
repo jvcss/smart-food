@@ -5,8 +5,8 @@ import 'package:bloc_study/cubit_main.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('Test Cubit State Manager', () {
-    expect(cubitMain(), 2);
+  test('Test Cubit State Manager', () async {
+    expect(await cubitMain(), 2);
   });
 
   test('Test Bloc State Manager', () async {
