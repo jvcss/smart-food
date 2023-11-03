@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:smart_food/src/blocs/authentication/authentication_bloc.dart';
+import 'package:smart_food/src/blocs/authentication/authentication_event.dart';
+import 'package:smart_food/utils/routes.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -14,7 +19,12 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                context
+                    .read<AuthenticationBloc>()
+                    .add(AuthenticationSignInWithGoogleEvent());
+                Navigator.of(context).pushNamed(AppRoutes.dashboard);
+              },
               child: const Text('Sign in with Google'),
             ),
           ],
