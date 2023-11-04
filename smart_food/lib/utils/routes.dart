@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_food/src/blocs/authentication/authentication_bloc.dart';
@@ -10,6 +11,27 @@ class AppRoutes {
   static const String home = '/';
   static const String login = '/login';
   static const String dashboard = '/dashboard';
+
+  static final Map<String, WidgetBuilder> routes = {
+    home: (context) {
+      try {
+        final authState = context.read<AuthenticationBloc>().state;
+
+        if (authState is AuthenticationAuthenticated) {
+          return const DashboardScreen();
+        } else {
+          return const LoginScreen();
+        }
+      } catch (e) {
+        if (kDebugMode) {
+          print(e);
+        }
+        return const LoginScreen();
+      }
+    },
+    login: (context) => const LoginScreen(),
+    dashboard: (context) => const DashboardScreen(),
+  };
 
   static String getInitialRoute(AuthenticationState state) {
     if (state is AuthenticationAuthenticated) {
