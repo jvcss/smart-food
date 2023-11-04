@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:smart_food/src/blocs/authentication/authentication_bloc.dart';
+
 import 'package:smart_food/utils/routes.dart';
 import 'firebase_options.dart';
 
@@ -31,9 +32,24 @@ class App extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: AppRoutes.login,
-        routes: AppRoutes.routes,
+        onGenerateRoute: AppRoutes.generateRoutes(context),
       ),
+    );
+  }
+}
+
+class Main extends StatelessWidget {
+  const Main({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Smart Food',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      onGenerateRoute: AppRoutes.generateRoutes(context),
     );
   }
 }

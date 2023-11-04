@@ -9,7 +9,6 @@ import 'package:smart_food/src/screens/login_screen.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  // Initialize Firebase
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

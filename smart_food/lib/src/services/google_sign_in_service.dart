@@ -36,4 +36,8 @@ class GoogleSignInService {
   Future<void> signOutFromGoogle() async {
     _auth.signOut();
   }
+
+  User? getFirebaseUser() {
+    return FirebaseAuth.instance.currentUser;
+  }
 }

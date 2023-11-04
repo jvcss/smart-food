@@ -1,6 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_food/src/blocs/authentication/authentication_bloc.dart';
+import 'package:smart_food/src/blocs/authentication/authentication_event.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -19,8 +20,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
           children: [
             ElevatedButton(
               onPressed: () => {
-                GoogleSignIn().signOut(),
-                FirebaseAuth.instance.signOut(),
+                context
+                    .read<AuthenticationBloc>()
+                    .add(AuthenticationSignOutEvent())
               },
               child: const Text('Log out'),
             ),
