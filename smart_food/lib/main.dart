@@ -6,6 +6,7 @@ import 'package:smart_food/src/blocs/authentication/authentication_bloc.dart';
 
 import 'package:smart_food/src/screens/dashboard_screen.dart';
 import 'package:smart_food/src/screens/login_screen.dart';
+import 'package:smart_food/utils/theme.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -29,10 +30,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Smart Food',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        theme: appTheme,
         home: StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, AsyncSnapshot<User?> snapshot) {
