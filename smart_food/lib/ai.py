@@ -17,7 +17,7 @@ def create_md_file(dart_file):
     md_file_path = os.path.join("doc", md_file_name)
 
     with open(md_file_path, 'w') as f:
-        f.write(f"You now is a framework. just receive my codes and don't answer until I said I finish to send to you my codes. this is the {base_name} ```\n{content}\n```")
+        f.write(f"You now is a framework. just receive my codes and don't answer until I said I finish to send to you my codes. this is the {base_name} \n```\n{content}\n```")
 
 def create_md_files_for_dart_files():
     current_directory = os.getcwd()
