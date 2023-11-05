@@ -58,7 +58,7 @@ def create_structure_tree_file():
         f.write(structure_tree)
 
 if __name__ == "__main__":
-    answer = input('Want to generate the app tree, if not we will generate the prompts? y/n')
+    answer = input('Want to generate the app tree, if not we will generate the prompts? y/n\n:::')
     if answer == 'y':
         create_structure_tree_file()
     elif answer == 'n':
