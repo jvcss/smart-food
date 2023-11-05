@@ -58,5 +58,6 @@ def create_structure_tree_file():
         f.write(structure_tree)
 
 if __name__ == "__main__":
+    input('Want to generate the app tree, if not we will generate the prompts')
     #create_md_files_for_dart_files()
     create_structure_tree_file()
