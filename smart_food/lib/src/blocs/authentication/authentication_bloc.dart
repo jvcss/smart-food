@@ -37,15 +37,5 @@ class AuthenticationBloc
         emit(AuthenticationError('User is not signed in'));
       }
     });
-
-    on<AuthenticationCheckStatusEvent>((event, emit) async {
-      emit(AuthenticationCheckingStatus());
-
-      if (googleSignInService.getFirebaseUser() != null) {
-        emit(AuthenticationAuthenticated());
-      } else {
-        emit(AuthenticationUnauthenticated());
-      }
-    });
   }
 }

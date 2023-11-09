@@ -12,10 +12,6 @@ class AuthenticationSignedIn extends AuthenticationState {
 
 class AuthenticationSignedOut extends AuthenticationState {}
 
-class AuthenticationCheckingStatus extends AuthenticationState {}
-
-class AuthenticationAuthenticated extends AuthenticationState {}
-
 class AuthenticationUnauthenticated extends AuthenticationState {}
 
 class AuthenticationError extends AuthenticationState {
