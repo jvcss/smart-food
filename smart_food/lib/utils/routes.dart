@@ -17,7 +17,7 @@ class AppRoutes {
       try {
         final authState = context.read<AuthenticationBloc>().state;
 
-        if (authState is AuthenticationAuthenticated) {
+        if (authState is AuthenticationSignedIn) {
           return const DashboardScreen();
         } else {
           return const LoginScreen();
@@ -34,7 +34,7 @@ class AppRoutes {
   };
 
   static String getInitialRoute(AuthenticationState state) {
-    if (state is AuthenticationAuthenticated) {
+    if (state is AuthenticationSignedIn) {
       return dashboard;
     } else {
       return login;
