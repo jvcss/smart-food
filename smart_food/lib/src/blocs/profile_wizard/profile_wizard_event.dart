@@ -23,3 +23,5 @@ final class ProfileWizardAgeSubmitted extends ProfileWizardEvent {
 
   final int? age;
 }
+
+final class ProfileWizardCompleted extends ProfileWizardEvent {}

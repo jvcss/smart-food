@@ -12,5 +12,11 @@ class ProfileWizardBloc extends Bloc<ProfileWizardEvent, ProfileWizardState> {
     on<ProfileWizardAgeSubmitted>((event, emit) {
       emit(state.copyWith(profile: state.profile.copyWith(age: event.age)));
     });
+
+    on<ProfileWizardCompleted>(
+      (event, emit) {
+        emit(ProfileWizardCompletedState(profile: state.profile));
+      },
+    );
   }
 }

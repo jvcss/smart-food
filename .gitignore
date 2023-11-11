@@ -1,0 +1,19 @@
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
+# Backup files # 
+*.bak
+# Visual Studio Code # 
+.vscode/*
+.history
+# Environments 
+.env
+env/
+# pyenv 
+.python-version
+# Installer logs 
+pip-log.txt

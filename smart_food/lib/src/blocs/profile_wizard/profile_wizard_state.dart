@@ -34,6 +34,8 @@ final class ProfileWizardState {
   final Profile profile;
   final DateTime lastUpdated;
 
+  bool get isCompleted => this is ProfileWizardCompletedState;
+
   ProfileWizardState copyWith({Profile? profile}) {
     return ProfileWizardState(
       profile: profile ?? this.profile,
@@ -50,4 +52,8 @@ final class ProfileWizardState {
 
   @override
   int get hashCode => profile.hashCode ^ lastUpdated.hashCode;
+}
+
+final class ProfileWizardCompletedState extends ProfileWizardState {
+  ProfileWizardCompletedState({required super.profile});
 }

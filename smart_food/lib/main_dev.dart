@@ -105,7 +105,7 @@ class _ProfileNameFormState extends State<ProfileNameForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Name')),
+      appBar: AppBar(title: const Text('Sobre Seu Negócio')),
       body: Center(
         child: Column(
           children: <Widget>[

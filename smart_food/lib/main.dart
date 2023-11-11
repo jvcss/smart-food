@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_food/src/blocs/authentication/authentication_bloc.dart';
 import 'package:smart_food/src/blocs/authentication/authentication_state.dart';
+import 'package:smart_food/src/blocs/profile_wizard/profile_wizard_bloc.dart';
 
 import 'package:smart_food/src/screens/dashboard_screen.dart';
 import 'package:smart_food/src/screens/login_screen.dart';
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => AuthenticationBloc(),
         ),
+        BlocProvider(
+          create: (_) => ProfileWizardBloc(),
+        )
       ],
       child: MaterialApp(
         title: 'Smart Food',
@@ -43,15 +47,7 @@ class AuthenticationWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthenticationBloc, AuthenticationState>(
-      listener: (context, state) {
-        if (state is AuthenticationSignedIn) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const DashboardScreen()),
-          );
-        }
-      },
+    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       builder: (context, state) {
         if (state is AuthenticationSignedIn) {
           return const DashboardScreen();
