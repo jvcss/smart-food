@@ -1,6 +1,6 @@
 import json
 import openai
-
+import requests
 
 class GPTApi:
     def __init__(self, api_key, model="text-davinci-003"):
@@ -50,7 +50,7 @@ class GPTApi:
     def offline_call_gpt_028_api(self, prompt):
         openai.api_base = "http://localhost:4891/v1"
         
-        model = "ggml-mpt-7b-chat"
+        model = "ggml-mpt-7b-chat.bin"
         specific_cmd = "You are a helpful assistant designed to output JSON. "
         prompt = specific_cmd + prompt
         response = openai.Completion.create(
@@ -66,3 +66,34 @@ class GPTApi:
         print(response)
         return response['choices'][0]['text']
 
+    def reqest_offline_gpt_028_api(self, prompt):
+        openai.api_base = "http://localhost:4891/v1"
+
+        model = "ggml-mpt-7b-chat.bin"
+        specific_cmd = "You are a helpful assistant designed to output JSON. "
+        prompt = specific_cmd + prompt
+
+        try:
+            response = requests.post(
+                f"{openai.api_base}/completions",
+                json={
+                    "model": model,
+                    "prompt": prompt,
+                    "max_tokens": 50,
+                    "temperature": 0.28,
+                    "top_p": 0.95,
+                    "n": 1,
+                    "echo": True,
+                    "stream": False
+                },
+                timeout=3600  # Set your desired timeout value in seconds
+            )
+
+            response.raise_for_status()  # Raise an error for bad responses (4xx and 5xx)
+            print(response.json())
+            result = response.json()['choices'][0]['text']
+        except requests.exceptions.Timeout:
+            print("The request timed out.")
+        except requests.exceptions.RequestException as e:
+            print(f"An error occurred: {e}")
+            result = None
