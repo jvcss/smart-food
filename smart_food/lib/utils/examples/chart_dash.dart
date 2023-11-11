@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_food/src/models/data_dashboard_model.dart';
 import 'package:smart_food/src/widgets/dashboard_card.dart';
 import 'package:smart_food/src/widgets/horizontal_graph.dart';
+import 'package:smart_food/src/widgets/vertial_chart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,7 +45,7 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const SizedBox(height: 420),
+              VerticalChartWidget(data: demoData), // Use VerticalChartWidget
               SizedBox(
                 height: 20,
                 child: HorizontalBarChart(
