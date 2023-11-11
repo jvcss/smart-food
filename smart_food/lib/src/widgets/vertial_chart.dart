@@ -1,5 +1,4 @@
 import 'dart:math' as math;
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_food/src/models/data_dashboard_model.dart';
@@ -43,6 +42,9 @@ class _VerticalChartWidgetState extends State<VerticalChartWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final double maxValue =
+        widget.data.map((data) => data.units).reduce(math.max);
+
     return Padding(
       padding: const EdgeInsets.all(24),
       child: AspectRatio(
@@ -54,8 +56,7 @@ class _VerticalChartWidgetState extends State<VerticalChartWidget> {
               show: true,
               border: Border.symmetric(
                 horizontal: BorderSide(
-                  color: Colors.grey.withOpacity(
-                      0.2), // Replace with your desired border color
+                  color: Colors.grey.withOpacity(0.2),
                 ),
               ),
             ),
@@ -79,13 +80,9 @@ class _VerticalChartWidgetState extends State<VerticalChartWidget> {
                   showTitles: true,
                   reservedSize: 36,
                   getTitlesWidget: (value, meta) {
-                    final index = value.toInt();
-                    return SideTitleWidget(
-                      axisSide: meta.axisSide,
-                      child: _IconWidget(
-                        color: widget.data[index].color,
-                        isSelected: touchedGroupIndex == index,
-                      ),
+                    return Text(
+                      value.toInt().toString(),
+                      textAlign: TextAlign.left,
                     );
                   },
                 ),
@@ -97,8 +94,7 @@ class _VerticalChartWidgetState extends State<VerticalChartWidget> {
               show: true,
               drawVerticalLine: false,
               getDrawingHorizontalLine: (value) => FlLine(
-                color: Colors.grey.withOpacity(
-                    0.2), // Replace with your desired grid line color
+                color: Colors.grey.withOpacity(0.2),
                 strokeWidth: 1,
               ),
             ),
@@ -109,10 +105,10 @@ class _VerticalChartWidgetState extends State<VerticalChartWidget> {
                 index,
                 data.color,
                 data.units,
-                0, // Assuming shadowValue is 0 for simplicity. Adjust as needed.
+                0,
               );
             }).toList(),
-            maxY: 20,
+            maxY: maxValue,
             barTouchData: BarTouchData(
               enabled: true,
               handleBuiltInTouches: false,
@@ -159,49 +155,5 @@ class _VerticalChartWidgetState extends State<VerticalChartWidget> {
         ),
       ),
     );
-  }
-}
-
-class _IconWidget extends ImplicitlyAnimatedWidget {
-  const _IconWidget({
-    required this.color,
-    required this.isSelected,
-  }) : super(duration: const Duration(milliseconds: 300));
-  final Color color;
-  final bool isSelected;
-
-  @override
-  ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget> createState() =>
-      _IconWidgetState();
-}
-
-class _IconWidgetState extends AnimatedWidgetBaseState<_IconWidget> {
-  Tween<double>? _rotationTween;
-
-  @override
-  Widget build(BuildContext context) {
-    final rotation = math.pi * 4 * _rotationTween!.evaluate(animation);
-    final scale = 1 + _rotationTween!.evaluate(animation) * 0.5;
-    return Transform(
-      transform: Matrix4.rotationZ(rotation).scaled(scale, scale),
-      origin: const Offset(14, 14),
-      child: Icon(
-        widget.isSelected ? Icons.face_retouching_natural : Icons.face,
-        color: widget.color,
-        size: 28,
-      ),
-    );
-  }
-
-  @override
-  void forEachTween(TweenVisitor<dynamic> visitor) {
-    _rotationTween = visitor(
-      _rotationTween,
-      widget.isSelected ? 1.0 : 0.0,
-      (dynamic value) => Tween<double>(
-        begin: value as double,
-        end: widget.isSelected ? 1.0 : 0.0,
-      ),
-    ) as Tween<double>?;
   }
 }

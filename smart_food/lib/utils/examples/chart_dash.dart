@@ -3,6 +3,7 @@ import 'package:smart_food/src/models/data_dashboard_model.dart';
 import 'package:smart_food/src/widgets/dashboard_card.dart';
 import 'package:smart_food/src/widgets/horizontal_graph.dart';
 import 'package:smart_food/src/widgets/vertial_chart.dart';
+import 'package:smart_food/utils/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
+      theme: appTheme,
       home: const HomePage(),
     );
   }
@@ -39,6 +40,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('Home')),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
