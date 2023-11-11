@@ -24,17 +24,12 @@ class RestaurantViewSet(viewsets.ModelViewSet):
 
         gpt_response = api.call_gpt_api(prompt)
 
-        ingredients = api.process_gpt_response(gpt_response)
-
         # Add ingredients to the restaurant
-        #restaurant.ingredients.add(*ingredients)
+        restaurant.ingredients.add(*ingredients)
 
         headers = self.get_success_headers(serializer.data)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
-
-
 
 class IngredientViewSet(viewsets.ModelViewSet):
     queryset = Ingredient.objects.all()
