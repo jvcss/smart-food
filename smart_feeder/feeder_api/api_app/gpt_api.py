@@ -22,4 +22,4 @@ class GPTApi:
             max_tokens=50,
             response_format={"type": "json_object"},
         )
-        return response.choices[0].text.strip()
+        return response.choices[0].message.content
