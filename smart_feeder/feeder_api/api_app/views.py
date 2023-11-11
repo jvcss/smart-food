@@ -18,7 +18,8 @@ class RestaurantViewSet(viewsets.ModelViewSet):
         # Your custom logic here, to save properly the names, remove special chars
         restaurant = serializer.save()
 
-        api = GPTApi(api_key=config('OPENAI_API_KEY'))
+        #api = GPTApi(api_key=config('OPENAI_API_KEY'))
+        api = GPTApi(api_key='not needed for a local LLM')
 
         prompt = api.generate_prompt(restaurant_type=restaurant.restaurant_type)
 

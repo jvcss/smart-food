@@ -48,9 +48,9 @@ class GPTApi:
             return None
 
     def offline_call_gpt_028_api(self, prompt):
-        openai.base_url = "http://localhost:4891/v1"
-        openai.api_key = "not needed for a local LLM"
-        model = "ggml-mpt-7b-base.bin"
+        openai.api_base = "http://localhost:4891/v1"
+        
+        model = "ggml-mpt-7b-chat"
         specific_cmd = "You are a helpful assistant designed to output JSON. "
         prompt = specific_cmd + prompt
         response = openai.Completion.create(
