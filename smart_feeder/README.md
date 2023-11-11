@@ -1,7 +1,8 @@
-#### Install Migrations
+#### Apply Migrations
 
 ```shell
 python manage.py makemigrations
+python manage.py migrate
 ```
 
 #### Login
@@ -16,4 +17,10 @@ Go to `http://127.0.0.1:8000/admin`
 
 ```shell
 http://127.0.0.1:8000/api
+```
+
+#### Test API 
+
+```shell
+python manage.py test
 ```
