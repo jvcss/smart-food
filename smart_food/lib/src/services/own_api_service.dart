@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:smart_food/src/blocs/profile_wizard/profile_wizard_bloc.dart';
-
 Dio myDio() {
   final options = BaseOptions(
     baseUrl: 'http://192.168.100.3:8000',
