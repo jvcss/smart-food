@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_food/src/blocs/ingredients/ingredient_bloc.dart';
 import 'package:smart_food/src/blocs/profile_wizard/profile_wizard_bloc.dart';
 
 class ProfileBusinessInfoForm extends StatefulWidget {
@@ -21,53 +22,71 @@ class ProfileBusinessInfoFormState extends State<ProfileBusinessInfoForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Sobre seu negócio')),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              TextField(
-                onChanged: (value) => setState(() => _restaurantName = value),
-                decoration: const InputDecoration(
-                  labelText: 'Nome',
-                  hintText: 'Sushi Fresh',
+    return BlocListener<ProfileWizardBloc, ProfileWizardState>(
+      listener: (context, state) {
+        if (state.profile.restaurantId! > 0) {
+          // The business info is successfully submitted,
+          // now you can get the restaurantId
+          final restaurantId = state.profile.restaurantId;
+
+          // Dispatch FetchIngredientsEvent with the obtained restaurantId
+          context.read<IngredientBloc>().add(
+                FetchIngredientsEvent(
+                  restaurantId!,
                 ),
-              ),
-              const SizedBox(height: 16), // Add space between text fields
-              TextField(
-                onChanged: (value) =>
-                    setState(() => _restaurantLocation = value),
-                decoration: const InputDecoration(
-                  labelText: 'Localizacao',
-                  hintText: 'Asa Sul',
+              );
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Sobre seu negócio')),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                TextField(
+                  onChanged: (value) => setState(() => _restaurantName = value),
+                  decoration: const InputDecoration(
+                    labelText: 'Nome',
+                    hintText: 'Sushi Fresh',
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16), // Add space between text fields
-              TextField(
-                onChanged: (value) => setState(() => _restaurantType = value),
-                decoration: const InputDecoration(
-                  labelText: 'Tipo de restaurante',
-                  hintText: 'Japanês',
+                const SizedBox(height: 16),
+                TextField(
+                  onChanged: (value) =>
+                      setState(() => _restaurantLocation = value),
+                  decoration: const InputDecoration(
+                    labelText: 'Localizacao',
+                    hintText: 'Asa Sul',
+                  ),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: _restaurantName.isNotEmpty &&
-                        _restaurantLocation.isNotEmpty &&
-                        _restaurantType.isNotEmpty
-                    ? () => context.read<ProfileWizardBloc>().add(
-                          ProfileWizardBusinessInfoSubmitted(
-                            restaurantId: 0,
-                            restaurantName: _restaurantName,
-                            restaurantLocation: _restaurantLocation,
-                            restaurantType: _restaurantType,
-                          ),
-                        )
-                    : null,
-                child: const Text('Continue'),
-              ),
-            ],
+                const SizedBox(height: 16),
+                TextField(
+                  onChanged: (value) => setState(() => _restaurantType = value),
+                  decoration: const InputDecoration(
+                    labelText: 'Tipo de restaurante',
+                    hintText: 'Japanês',
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: _restaurantName.isNotEmpty &&
+                          _restaurantLocation.isNotEmpty &&
+                          _restaurantType.isNotEmpty
+                      ? () {
+                          context.read<ProfileWizardBloc>().add(
+                                ProfileWizardBusinessInfoSubmitted(
+                                  restaurantId: 0,
+                                  restaurantName: _restaurantName,
+                                  restaurantLocation: _restaurantLocation,
+                                  restaurantType: _restaurantType,
+                                ),
+                              );
+                        }
+                      : null,
+                  child: const Text('Continue'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -13,15 +13,27 @@ Dio myDio() {
 class OwnAPIService {
   final Dio dio = myDio();
 
-  Future<List<String>> getIngredients(String restaurantName) async {
+  Future<List<String>> buildAISuggestIngredients(int restaurantId) async {
     try {
-      final response = await dio.get('/api/restaurants/13');
+      final response = await dio.get('/api/ingredients/$restaurantId');
+      if (response.statusCode == 200) {
+        dynamic data = response.data['restaurant_ingredients'];
+        return data;
+      } else {
+        throw Exception('Failed to load restaurants');
+      }
+    } catch (e) {
+      throw Exception('Failed to load ingredients: $e');
+    }
+  }
+
+  Future<List<String>> getIngredients(int restaurantId) async {
+    try {
+      final response = await dio.get('/api/restaurants/$restaurantId');
 
       if (response.statusCode == 200) {
-        List<dynamic> data = response.data;
-        List<String> restaurantNames =
-            data.map((item) => item['name'].toString()).toList();
-        return restaurantNames;
+        dynamic data = response.data['restaurant_ingredients'];
+        return data;
       } else {
         throw Exception('Failed to load restaurants');
       }

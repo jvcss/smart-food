@@ -45,6 +45,7 @@ class DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(profile.restaurantName ?? 'Dashboard'),
+        centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {
