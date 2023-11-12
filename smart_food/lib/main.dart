@@ -23,7 +23,7 @@ void main() async {
 class App extends StatelessWidget {
   App({super.key});
 
-  OwnAPIService apiService = OwnAPIService();
+  final OwnAPIService apiService = OwnAPIService();
 
   @override
   Widget build(BuildContext context) {
