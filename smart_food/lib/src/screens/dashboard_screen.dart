@@ -3,7 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_food/src/blocs/authentication/authentication_bloc.dart';
 import 'package:smart_food/src/blocs/authentication/authentication_event.dart';
 import 'package:smart_food/src/blocs/profile_wizard/profile_wizard_bloc.dart';
+import 'package:smart_food/src/widgets/dashboard_card.dart';
+import 'package:smart_food/src/widgets/dashboard_chart.dart';
 import 'package:smart_food/src/widgets/dashboard_wizard.dart';
+import 'package:smart_food/src/widgets/horizontal_graph.dart';
+import 'package:smart_food/src/widgets/vertial_chart.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -39,19 +43,45 @@ class DashboardScreenState extends State<DashboardScreen> {
 
   Scaffold mainDashboard(BuildContext context, Profile profile) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () => {
-                context
-                    .read<AuthenticationBloc>()
-                    .add(AuthenticationSignOutEvent())
-              },
-              child: const Text('Log out'),
-            ),
-          ],
+      appBar: AppBar(
+        title: const Text('Nome do comerico'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context
+                  .read<AuthenticationBloc>()
+                  .add(AuthenticationSignOutEvent());
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              VerticalChartWidget(data: demoData), // Use VerticalChartWidget
+              SizedBox(
+                height: 20,
+                child: HorizontalBarChart(
+                  data: demoData,
+                ),
+              ),
+              HorizontalBarChart(
+                data: demoData,
+              ),
+              const SizedBox(height: 20),
+              ...demoData.map(
+                (data) => DashboardCardWidget(
+                  title: data.title,
+                  price: data.price,
+                  color: data.color,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
