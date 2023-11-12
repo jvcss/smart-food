@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:smart_food/src/services/own_api_service.dart';
 
 part 'profile_wizard_event.dart';
@@ -32,7 +33,9 @@ class ProfileWizardBloc extends Bloc<ProfileWizardEvent, ProfileWizardState> {
           );
         } catch (error) {
           // Handle errors if needed
-          print('Error creating restaurant: $error');
+          if (kDebugMode) {
+            print('Error creating restaurant: $error');
+          }
         }
       },
     );
