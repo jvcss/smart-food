@@ -33,6 +33,7 @@ class App extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Smart Food',
         theme: appTheme,
         home: const AuthenticationWrapper(),
