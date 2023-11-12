@@ -24,14 +24,14 @@ class RestaurantViewSet(viewsets.ModelViewSet):
         prompt = api.generate_prompt(restaurant_type=restaurant.restaurant_type)
 
         #gpt_response = api.call_gpt_api(prompt)
-        gpt_response = api.offline_call_gpt_028_api(prompt)
+        #gpt_response = api.offline_call_gpt_028_api(prompt)
 
         req = api.reqest_offline_gpt_028_api(prompt)
 
-        clean_response = api.process_gpt_response(gpt_response, as_type=list)
+        #clean_response = api.process_gpt_response(gpt_response, as_type=list)
 
         # Add ingredients to the restaurant
-        restaurant.ingredients.add(*clean_response)
+        #restaurant.ingredients.add(*clean_response)
 
         headers = self.get_success_headers(serializer.data)
 
