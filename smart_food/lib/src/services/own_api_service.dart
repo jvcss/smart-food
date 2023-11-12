@@ -48,7 +48,7 @@ class OwnAPIService {
         if (kDebugMode) {
           print('Restaurant created successfully');
         }
-        return 'sucess';
+        return response.data;
       } else {
         throw Exception('Failed to create restaurant');
       }
