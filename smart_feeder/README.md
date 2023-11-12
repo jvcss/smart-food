@@ -11,7 +11,7 @@ python manage.py migrate
 python manage.py runserver 0.0.0.0:8000
 ```
 
-Go to `http://127.0.0.1:8000/admin`
+Go to `http://localhost:8000/admin`
 
 #### Access REST API
 
