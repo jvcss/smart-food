@@ -10,18 +10,30 @@ class ProfileWizardBloc extends Bloc<ProfileWizardEvent, ProfileWizardState> {
   ProfileWizardBloc() : super(ProfileWizardState.initial()) {
     on<ProfileWizardBusinessInfoSubmitted>(
       (event, emit) async {
-        //first we add this to the State memory
-        emit(
-          state.copyWith(
-            profile: state.profile.copyWith(
-              restaurantLocation: event.restaurantLocation,
-              restaurantName: event.restaurantName,
-              restaurantType: event.restaurantType,
+        try {
+          final result = await backend.createRestaurant(
+            event.restaurantName,
+            event.restaurantLocation,
+            event.restaurantType,
+          );
+
+          // Assuming result is the ID of the added restaurant
+          final addedRestaurantId = result['id'];
+
+          emit(
+            state.copyWith(
+              profile: state.profile.copyWith(
+                restaurantId: addedRestaurantId,
+                restaurantLocation: event.restaurantLocation,
+                restaurantName: event.restaurantName,
+                restaurantType: event.restaurantType,
+              ),
             ),
-          ),
-        );
-        // Then we add to to the database
-        var added_restaurant = await backend.createRestaurant(state.profile);
+          );
+        } catch (error) {
+          // Handle errors if needed
+          print('Error creating restaurant: $error');
+        }
       },
     );
 

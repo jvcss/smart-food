@@ -14,10 +14,12 @@ sealed class ProfileWizardEvent {
 
 final class ProfileWizardBusinessInfoSubmitted extends ProfileWizardEvent {
   const ProfileWizardBusinessInfoSubmitted(
-      {required this.restaurantName,
+      {required this.restaurantId,
+      required this.restaurantName,
       required this.restaurantLocation,
       required this.restaurantType});
 
+  final int restaurantId;
   final String restaurantName;
   final String restaurantLocation;
   final String restaurantType;

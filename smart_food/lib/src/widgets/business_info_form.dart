@@ -58,6 +58,7 @@ class ProfileBusinessInfoFormState extends State<ProfileBusinessInfoForm> {
                         _restaurantType.isNotEmpty
                     ? () => context.read<ProfileWizardBloc>().add(
                           ProfileWizardBusinessInfoSubmitted(
+                            restaurantId: 0,
                             restaurantName: _restaurantName,
                             restaurantLocation: _restaurantLocation,
                             restaurantType: _restaurantType,

@@ -32,14 +32,15 @@ class OwnAPIService {
     }
   }
 
-  Future<String> createRestaurant(Profile profile) async {
+  Future<dynamic> createRestaurant(String restaurantName,
+      String restaurantLocation, String restaurantType) async {
     try {
       final response = await dio.post(
         '/api/restaurants/',
         data: {
-          'restaurant_name': profile.restaurantName,
-          'restaurant_location': profile.restaurantLocation,
-          'restaurant_type': profile.restaurantType,
+          'restaurant_name': restaurantName,
+          'restaurant_location': restaurantLocation,
+          'restaurant_type': restaurantType,
           'restaurant_ingredients': []
         },
       );
