@@ -8,7 +8,7 @@ python manage.py migrate
 #### Login
 
 ```shell
-python manage.py runserver
+python manage.py runserver 0.0.0.0:8000
 ```
 
 Go to `http://127.0.0.1:8000/admin`

@@ -31,7 +31,7 @@ class ProfileBusinessInfoFormState extends State<ProfileBusinessInfoForm> {
               TextField(
                 onChanged: (value) => setState(() => _restaurantName = value),
                 decoration: const InputDecoration(
-                  labelText: 'Name',
+                  labelText: 'Nome',
                   hintText: 'Sushi Fresh',
                 ),
               ),
@@ -40,29 +40,28 @@ class ProfileBusinessInfoFormState extends State<ProfileBusinessInfoForm> {
                 onChanged: (value) =>
                     setState(() => _restaurantLocation = value),
                 decoration: const InputDecoration(
-                  labelText: 'Location',
-                  hintText: '123 Main Street',
+                  labelText: 'Localizacao',
+                  hintText: 'Asa Sul',
                 ),
               ),
               const SizedBox(height: 16), // Add space between text fields
               TextField(
                 onChanged: (value) => setState(() => _restaurantType = value),
                 decoration: const InputDecoration(
-                  labelText: 'Type',
-                  hintText: 'Japanese Cuisine',
+                  labelText: 'Tipo de restaurante',
+                  hintText: 'Japanês',
                 ),
               ),
-
-              // todo SUBMIT BUTTOM
               ElevatedButton(
                 onPressed: _restaurantName.isNotEmpty &&
                         _restaurantLocation.isNotEmpty &&
                         _restaurantType.isNotEmpty
                     ? () => context.read<ProfileWizardBloc>().add(
                           ProfileWizardBusinessInfoSubmitted(
-                              restaurantName: _restaurantName,
-                              restaurantLocation: _restaurantLocation,
-                              restaurantType: _restaurantType),
+                            restaurantName: _restaurantName,
+                            restaurantLocation: _restaurantLocation,
+                            restaurantType: _restaurantType,
+                          ),
                         )
                     : null,
                 child: const Text('Continue'),

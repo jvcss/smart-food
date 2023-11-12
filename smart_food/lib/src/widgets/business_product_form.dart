@@ -37,8 +37,9 @@ class ProfileProductFormState extends State<ProfileProductForm> {
                 onPressed: () {
                   if (_productsAndIntesity.isNotEmpty) {
                     context.read<ProfileWizardBloc>().add(
-                        ProfileProductSubmitted(
-                            productList: _productsAndIntesity));
+                          ProfileProductSubmitted(
+                              productList: _productsAndIntesity),
+                        );
                     context
                         .read<ProfileWizardBloc>()
                         .add(ProfileWizardCompleted());

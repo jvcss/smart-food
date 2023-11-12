@@ -44,7 +44,7 @@ class DashboardScreenState extends State<DashboardScreen> {
   Scaffold mainDashboard(BuildContext context, Profile profile) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nome do comerico'),
+        title: Text(profile.restaurantName ?? 'Dashboard'),
         actions: [
           IconButton(
             onPressed: () {

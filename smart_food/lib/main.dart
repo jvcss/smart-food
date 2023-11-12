@@ -51,14 +51,8 @@ class AuthenticationWrapper extends StatelessWidget {
       builder: (context, state) {
         if (state is AuthenticationSignedIn) {
           return const DashboardScreen();
-        } else if (state is AuthenticationUnauthenticated ||
-            state is AuthenticationInitial ||
-            state is AuthenticationSignedOut) {
-          return const LoginScreen();
         } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const LoginScreen();
         }
       },
     );
