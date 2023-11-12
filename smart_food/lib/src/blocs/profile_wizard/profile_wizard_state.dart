@@ -1,16 +1,27 @@
 part of 'profile_wizard_bloc.dart';
 
 final class Profile {
-  const Profile({required this.name, required this.age});
+  const Profile({
+    required this.restaurantName,
+    required this.restaurantLocation,
+    required this.restaurantType,
+    required this.productList,
+  });
+  final List<String> productList;
+  final String? restaurantName;
+  final String? restaurantLocation;
+  final String? restaurantType;
 
-  final String? name;
-  final int? age;
-
-  Profile copyWith({String? name, int? age}) {
+  Profile copyWith(
+      {String? restaurantName,
+      String? restaurantLocation,
+      String? restaurantType,
+      List<String> productList = const []}) {
     return Profile(
-      name: name ?? this.name,
-      age: age ?? this.age,
-    );
+        restaurantName: restaurantName ?? restaurantName,
+        restaurantLocation: restaurantLocation ?? restaurantLocation,
+        restaurantType: restaurantType ?? restaurantType,
+        productList: productList);
   }
 
   @override
@@ -18,18 +29,30 @@ final class Profile {
       identical(this, other) ||
       other is Profile &&
           runtimeType == other.runtimeType &&
-          name == other.name &&
-          age == other.age;
+          restaurantName == other.restaurantName &&
+          restaurantLocation == other.restaurantLocation &&
+          restaurantType == other.restaurantType &&
+          productList == other.productList;
 
   @override
-  int get hashCode => name.hashCode ^ age.hashCode;
+  int get hashCode =>
+      restaurantName.hashCode ^
+      restaurantLocation.hashCode ^
+      restaurantType.hashCode ^
+      productList.hashCode;
 }
 
 final class ProfileWizardState {
   ProfileWizardState({required this.profile}) : lastUpdated = DateTime.now();
 
   ProfileWizardState.initial()
-      : this(profile: const Profile(name: null, age: null));
+      : this(
+            profile: const Profile(
+          restaurantName: null,
+          restaurantLocation: null,
+          restaurantType: null,
+          productList: [],
+        ));
 
   final Profile profile;
   final DateTime lastUpdated;

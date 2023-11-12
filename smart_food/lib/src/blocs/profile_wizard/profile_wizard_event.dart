@@ -12,16 +12,21 @@ sealed class ProfileWizardEvent {
       0; // You might want to customize this based on your class properties
 }
 
-final class ProfileWizardNameSubmitted extends ProfileWizardEvent {
-  const ProfileWizardNameSubmitted(this.name);
+final class ProfileWizardBusinessInfoSubmitted extends ProfileWizardEvent {
+  const ProfileWizardBusinessInfoSubmitted(
+      {required this.restaurantName,
+      required this.restaurantLocation,
+      required this.restaurantType});
 
-  final String name;
+  final String restaurantName;
+  final String restaurantLocation;
+  final String restaurantType;
 }
 
-final class ProfileWizardAgeSubmitted extends ProfileWizardEvent {
-  const ProfileWizardAgeSubmitted(this.age);
+final class ProfileProductSubmitted extends ProfileWizardEvent {
+  ProfileProductSubmitted({required this.productList});
 
-  final int? age;
+  final List<String> productList;
 }
 
 final class ProfileWizardCompleted extends ProfileWizardEvent {}

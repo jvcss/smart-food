@@ -5,13 +5,22 @@ part 'profile_wizard_state.dart';
 
 class ProfileWizardBloc extends Bloc<ProfileWizardEvent, ProfileWizardState> {
   ProfileWizardBloc() : super(ProfileWizardState.initial()) {
-    on<ProfileWizardNameSubmitted>((event, emit) {
-      emit(state.copyWith(profile: state.profile.copyWith(name: event.name)));
-    });
+    on<ProfileWizardBusinessInfoSubmitted>(
+      (event, emit) {
+        emit(state.copyWith(
+            profile: state.profile.copyWith(
+                restaurantLocation: event.restaurantLocation,
+                restaurantName: event.restaurantName,
+                restaurantType: event.restaurantType)));
+      },
+    );
 
-    on<ProfileWizardAgeSubmitted>((event, emit) {
-      emit(state.copyWith(profile: state.profile.copyWith(age: event.age)));
-    });
+    on<ProfileProductSubmitted>(
+      (event, emit) {
+        emit(state.copyWith(
+            profile: state.profile.copyWith(productList: event.productList)));
+      },
+    );
 
     on<ProfileWizardCompleted>(
       (event, emit) {

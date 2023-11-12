@@ -1,50 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_food/main_dev.dart';
 import 'package:smart_food/src/blocs/authentication/authentication_bloc.dart';
 import 'package:smart_food/src/blocs/authentication/authentication_event.dart';
 import 'package:smart_food/src/blocs/profile_wizard/profile_wizard_bloc.dart';
+import 'package:smart_food/src/widgets/dashboard_wizard.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  State<DashboardScreen> createState() => DashboardScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProfileWizardBloc, ProfileWizardState>(
-      listener: (context, state) {
-        if (state.isCompleted) {
-          // Wizard is completed, navigate or perform other actions
-          final profile = state.profile;
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => mainDashboard(context, profile)),
-          );
-        }
-      },
+    return BlocBuilder<ProfileWizardBloc, ProfileWizardState>(
       builder: (context, state) {
-        // Build UI based on the current state
+        // Build UI Wizard FLow
         if (!state.isCompleted) {
           return ProfileWizardFlow(onComplete: _onWizardComplete);
         } else {
           // Wizard is completed, show the main dashboard
-          return const SizedBox
-              .shrink(); // Return an empty widget as we'll navigate to mainDashboard
+          return mainDashboard(context, state.profile);
         }
       },
     );
   }
 
   void _onWizardComplete(Profile profile) {
-    (profile) => Navigator.of(context).pop(profile);
-    // Handle the completion of the wizard, if needed
-    // You can perform actions or update the UI based on the completed profile
-    // For example, you can dispatch an event to update the user's profile in your system.
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => mainDashboard(context, profile),
+      ),
+    );
   }
 
   Scaffold mainDashboard(BuildContext context, Profile profile) {
