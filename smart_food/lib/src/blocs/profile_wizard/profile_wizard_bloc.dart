@@ -21,7 +21,7 @@ class ProfileWizardBloc extends Bloc<ProfileWizardEvent, ProfileWizardState> {
           ),
         );
         // Then we add to to the database
-        var ok = await backend.createRestaurant(state.profile);
+        var added_restaurant = await backend.createRestaurant(state.profile);
       },
     );
 
