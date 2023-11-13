@@ -22,7 +22,7 @@ class ProfileProductFormState extends State<ProfileProductForm> {
       builder: (context, state) {
         if (state is IngredientsLoadingState) {
           // Handle loading state
-          return const CircularProgressIndicator();
+          return CircularProgressIndicator();
         } else if (state is IngredientsLoadedState) {
           // Handle loaded state
           final ingredients = state.ingredients;

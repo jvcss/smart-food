@@ -17,7 +17,7 @@ abstract class IngredientState {}
 class IngredientsLoadingState extends IngredientState {}
 
 class IngredientsLoadedState extends IngredientState {
-  final List<String> ingredients;
+  final List<dynamic> ingredients;
 
   IngredientsLoadedState(this.ingredients);
 }

@@ -10,7 +10,7 @@ final class Profile {
   });
 
   final int? restaurantId;
-  final List<String> productList;
+  final List<dynamic> productList;
   final String? restaurantName;
   final String? restaurantLocation;
   final String? restaurantType;
@@ -20,7 +20,7 @@ final class Profile {
       String? restaurantName,
       String? restaurantLocation,
       String? restaurantType,
-      List<String> productList = const []}) {
+      List<dynamic> productList = const []}) {
     return Profile(
         restaurantId: restaurantId ?? restaurantId,
         restaurantName: restaurantName ?? restaurantName,

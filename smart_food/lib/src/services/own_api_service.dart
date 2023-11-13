@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 Dio myDio() {
   final options = BaseOptions(
     baseUrl: 'http://192.168.100.3:8000',
-    connectTimeout: const Duration(seconds: 5),
-    receiveTimeout: const Duration(seconds: 3),
+    connectTimeout: const Duration(minutes: 5),
+    receiveTimeout: const Duration(minutes: 30),
   );
   return Dio(options);
 }
@@ -13,12 +13,11 @@ Dio myDio() {
 class OwnAPIService {
   final Dio dio = myDio();
 
-  Future<List<String>> buildAISuggestIngredients(int restaurantId) async {
+  Future<List<dynamic>> buildAISuggestIngredients(int restaurantId) async {
     try {
-      final response = await dio.get('/api/ingredients/$restaurantId');
+      final response = await dio.get('/api/restaurants/$restaurantId/');
       if (response.statusCode == 200) {
-        dynamic data = response.data['restaurant_ingredients'];
-        return data;
+        return response.data;
       } else {
         throw Exception('Failed to load restaurants');
       }

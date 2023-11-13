@@ -28,7 +28,7 @@ final class ProfileWizardBusinessInfoSubmitted extends ProfileWizardEvent {
 final class ProfileProductSubmitted extends ProfileWizardEvent {
   ProfileProductSubmitted({required this.productList});
 
-  final List<String> productList;
+  final List<dynamic> productList;
 }
 
 final class ProfileWizardCompleted extends ProfileWizardEvent {}
