@@ -38,7 +38,10 @@ class ProfileBusinessInfoFormState extends State<ProfileBusinessInfoForm> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(title: const Text('Sobre seu negócio')),
+        appBar: AppBar(
+          title: const Text('Sobre seu negócio'),
+          centerTitle: true,
+        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
