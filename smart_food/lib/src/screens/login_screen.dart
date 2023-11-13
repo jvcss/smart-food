@@ -29,13 +29,28 @@ class LoginScreen extends StatelessWidget {
           ),
           Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        "assets/images/SMART.png",
+                        fit: BoxFit.contain,
+                      ),
+                      Image.asset(
+                        "assets/images/food.png",
+                        fit: BoxFit.contain,
+                      ),
+                    ],
+                  ),
+                ),
                 // Google Sign-In Button
+                const SizedBox(height: 64),
                 SignInWithGoogleButton(
                   onPressed: () => _handleSignIn(context),
                 ),
-                const SizedBox(height: 64),
               ],
             ),
           ),
