@@ -49,6 +49,13 @@ class DashboardScreenState extends State<DashboardScreen> {
         actions: [
           IconButton(
             onPressed: () {
+              // Show the NotificationsOverlay when the icon is pressed
+              showNotificationsOverlay(context);
+            },
+            icon: const Icon(Icons.notifications),
+          ),
+          IconButton(
+            onPressed: () {
               context
                   .read<AuthenticationBloc>()
                   .add(AuthenticationSignOutEvent());
@@ -85,6 +92,27 @@ class DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  void showNotificationsOverlay(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+      ),
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.all(16.0),
+          child: const Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              // Your content for the bottom sheet goes here
+              Text('Amanhã pode ter aumento significativo de vendas'),
+            ],
+          ),
+        );
+      },
     );
   }
 }
