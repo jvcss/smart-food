@@ -80,13 +80,5 @@ class IngredientList extends StatelessWidget {
         },
       ),
     );
-
-    //  ListView.builder(
-    //   itemCount: stringIngredients.length,
-    //   itemBuilder: (context, index) {
-    //     final ingredient = stringIngredients[index];
-    //     return Text(ingredient); //PersonalizedCard(title: ingredient);
-    //   },
-    // );
   }
 }
