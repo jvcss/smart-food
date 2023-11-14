@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 
 Dio myDio() {
   final options = BaseOptions(
-    baseUrl: 'http://192.168.100.3:8000',
+    baseUrl: 'http://192.168.55.136:8000',
     connectTimeout: const Duration(minutes: 5),
     receiveTimeout: const Duration(minutes: 30),
   );

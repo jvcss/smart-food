@@ -51,7 +51,7 @@ class ProfileBusinessInfoFormState extends State<ProfileBusinessInfoForm> {
                   onChanged: (value) => setState(() => _restaurantName = value),
                   decoration: const InputDecoration(
                     labelText: 'Nome',
-                    hintText: 'Sushi Fresh',
+                    hintText: 'PitDog Bom',
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -60,7 +60,7 @@ class ProfileBusinessInfoFormState extends State<ProfileBusinessInfoForm> {
                       setState(() => _restaurantLocation = value),
                   decoration: const InputDecoration(
                     labelText: 'Localizacao',
-                    hintText: 'Asa Sul',
+                    hintText: 'Rua Asa 9',
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -68,7 +68,7 @@ class ProfileBusinessInfoFormState extends State<ProfileBusinessInfoForm> {
                   onChanged: (value) => setState(() => _restaurantType = value),
                   decoration: const InputDecoration(
                     labelText: 'Tipo de restaurante',
-                    hintText: 'Japanês',
+                    hintText: 'Sanduicheria',
                   ),
                 ),
                 ElevatedButton(
