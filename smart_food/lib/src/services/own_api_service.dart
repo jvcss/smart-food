@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:smart_food/utils/consts.dart';
 
 Dio myDio() {
   final options = BaseOptions(
-    baseUrl: 'http://192.168.55.136:8000',
+    baseUrl: Constantes.urlApiEndpoint,
     connectTimeout: const Duration(minutes: 5),
     receiveTimeout: const Duration(minutes: 30),
   );
